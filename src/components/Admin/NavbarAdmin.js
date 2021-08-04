@@ -4,7 +4,7 @@ const NavbarAdmin = () => {
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 
                 <div className="container">
-                    <a className="navbar-brand" href="#"><i style={{color:"#F4C700"}} className="fab fa-speakap"></i> <strong>Admin</strong></a>
+                    <a className="navbar-brand" href="/"><i style={{color:"#F4C700"}} className="fab fa-speakap"></i> <strong>Admin</strong></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
