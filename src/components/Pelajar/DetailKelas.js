@@ -1,0 +1,7 @@
+const DetailKelas = (props) => {
+    return(
+        <>
+            
+        </>
+    );
+}

@@ -49,7 +49,7 @@ const ListPelajar = () => {
     }
 
     const handleTriggerHapus = () => {
-        const token = localStorage.getItem('loginAdmin');
+        const token = localStorage.getItem('loginPengajar');
         const dataSend = {
             token,
             id_pengajar : idHapus

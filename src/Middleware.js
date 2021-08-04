@@ -11,6 +11,9 @@ import LoginPengajar from './components/Pengajar/LoginPengajar';
 import ListPelajar from './components/Pengajar/ListPelajar';
 import ListKelas from './components/Pengajar/ListKelas';
 import TambahKelas from './components/Pengajar/TambahKelas';
+import Registrasi from './components/Pelajar/Registrasi';
+import LoginPelajar from './components/Pelajar/LoginPelajar';
+import RuangKelas from './components/Pelajar/RuangKelas';
 
 const Middleware = () => {
     return (
@@ -31,6 +34,10 @@ const Middleware = () => {
                     <Route exact path="/listPelajar" render={() => <ListPelajar />} />
                     <Route exact path="/listKelas" render={() => <ListKelas />} />
                     <Route exact path="/tambahKelas" render={() => <TambahKelas />} />
+
+                    <Route exact path="/registrasiPelajar" render={() => <Registrasi />} />
+                    <Route exact path="/loginPelajar" render={() => <LoginPelajar />} />
+                    <Route exact path="/ruangKelas" render={() => <RuangKelas />} />
                 </Switch>
             </Router>
         </>

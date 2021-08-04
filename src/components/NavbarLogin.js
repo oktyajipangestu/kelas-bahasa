@@ -1,6 +1,4 @@
-import {Link} from 'react-router-dom';
-
-const Navbar = () => {
+const NavbarLogin = (props) => {
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -13,13 +11,15 @@ const Navbar = () => {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/ruangKelas">Kelas <span class="sr-only"></span></a>
                         </li>
                         </ul>
-                        <form class="form-inline my-2 my-lg-0">
-                            <Link className="btn btn-outline-success my-2 my-sm-0 mx-2" to="/registrasiPelajar">Daftar</Link>
-                            <Link className="btn btn-outline-success my-2 my-sm-0 mx-2" to="/loginPelajar">login</Link>
-                        </form>
+                    </div>
+                    <div className="ml-auto">
+                        <i class="far fa-user"></i> Halo, Pemuda
                     </div>
                 </div>
             </nav>
@@ -27,4 +27,4 @@ const Navbar = () => {
     );
 }
 
-export default Navbar;
+export default NavbarLogin;

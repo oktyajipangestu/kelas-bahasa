@@ -48,7 +48,7 @@ const TambahKelas = () => {
     return (
         <>
             <div className="container">
-                <h2 className="my-5"><b>Tambah Admin</b></h2>
+                <h2 className="my-5"><b>Tambah Kelas</b></h2>
                 <form>
                 <div class="form-group">
                         <label for="nama">Kelas</label>
