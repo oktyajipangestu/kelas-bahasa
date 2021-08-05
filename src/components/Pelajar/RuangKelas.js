@@ -2,7 +2,8 @@ import {useState, useEffect} from "react";
 import { useHistory, Link } from "react-router-dom";
 import NavbarLogin from "../NavbarLogin";
 
-const RuangKelas = () => {
+const RuangKelas = (props) => {
+    
     const history = useHistory();
     const [dataKelas, setDataKelas] = useState([]);
     const [cari, setCari] = useState('');
@@ -31,13 +32,11 @@ const RuangKelas = () => {
         })
         .then(res => res.json())
         .then(hasil => {
-            console.log(hasil);
             if(hasil.status === 'berhasil') {
                 setDataKelas(hasil.data);
             }
         })
     }
-    console.log(dataKelas);
     return (
         <>
             <NavbarLogin />
@@ -57,7 +56,7 @@ const RuangKelas = () => {
                                         <li class="list-group-item">Materi : {data.materi}</li>
                                         <li class="list-group-item">Pelajar : {data.pelajar}</li>
                                     </ul>
-                                        <Link className="card-body btn btn-info" to="/detailKelas" detail={data.id_kelas}>Selengkapnya</Link>
+                                        <Link className="card-body btn btn-info" to={{ pathname: 'detailKelas', state: { id: data.id_kelas, judul: data.judul},}} >Selengkapnya</Link>
                                 </div>
                             </div>
                         );

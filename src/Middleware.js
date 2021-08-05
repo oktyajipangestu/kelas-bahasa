@@ -14,6 +14,7 @@ import TambahKelas from './components/Pengajar/TambahKelas';
 import Registrasi from './components/Pelajar/Registrasi';
 import LoginPelajar from './components/Pelajar/LoginPelajar';
 import RuangKelas from './components/Pelajar/RuangKelas';
+import DetailKelas from './components/Pelajar/DetailKelas';
 
 const Middleware = () => {
     return (
@@ -38,6 +39,8 @@ const Middleware = () => {
                     <Route exact path="/registrasiPelajar" render={() => <Registrasi />} />
                     <Route exact path="/loginPelajar" render={() => <LoginPelajar />} />
                     <Route exact path="/ruangKelas" render={() => <RuangKelas />} />
+
+                    <Route exact path="/detailKelas" render={() => <DetailKelas />} />
                 </Switch>
             </Router>
         </>
