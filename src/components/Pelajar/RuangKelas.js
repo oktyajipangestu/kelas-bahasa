@@ -3,7 +3,7 @@ import { useHistory, Link } from "react-router-dom";
 import NavbarLogin from "../NavbarLogin";
 
 const RuangKelas = (props) => {
-    
+    const nama = localStorage.getItem("pelajar");
     const history = useHistory();
     const [dataKelas, setDataKelas] = useState([]);
     const [cari, setCari] = useState('');
@@ -39,7 +39,7 @@ const RuangKelas = (props) => {
     }
     return (
         <>
-            <NavbarLogin />
+            <NavbarLogin nama={nama} />
             <div className="container">
                 <input class="form-control my-5" type="text" placeholder="Cari Kelas" onChange={(e) => setCari(e.target.value)}/>
                 <div className="row my-5">
@@ -56,7 +56,7 @@ const RuangKelas = (props) => {
                                         <li class="list-group-item">Materi : {data.materi}</li>
                                         <li class="list-group-item">Pelajar : {data.pelajar}</li>
                                     </ul>
-                                        <Link className="card-body btn btn-info" to={{ pathname: 'detailKelas', state: { id: data.id_kelas, judul: data.judul},}} >Selengkapnya</Link>
+                                        <Link className="card-body btn btn-info" to={{ pathname: 'detailKelas', state: { id: data.id_kelas, judul: data.judul} }} >Selengkapnya</Link>
                                 </div>
                             </div>
                         );

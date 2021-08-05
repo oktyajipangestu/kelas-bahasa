@@ -19,7 +19,7 @@ const NavbarLogin = (props) => {
                         </ul>
                     </div>
                     <div className="ml-auto">
-                        <i class="far fa-user"></i> Halo, Pemuda
+                        <i class="far fa-user"></i> {props.nama}
                     </div>
                 </div>
             </nav>

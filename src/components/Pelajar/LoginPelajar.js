@@ -37,6 +37,7 @@ const LoginPelajar = () => {
             console.log(hasil)
             if(hasil.status === 'berhasil') {
                 localStorage.setItem("loginPelajar", hasil.token);
+                localStorage.setItem("pelajar", hasil.data);
                 history.push("/ruangKelas");
             }
 
