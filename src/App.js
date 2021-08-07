@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import {} from 'react-bootstrap';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         </div>
       </div>
       </header>
+      <Footer />
     </div>
   );
 }

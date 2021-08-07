@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import { useLocation } from 'react-router-dom';
+import Footer from '../Footer';
 import NavbarLogin from '../NavbarLogin';
 
 const DetailKelas = (props) => {
@@ -11,9 +12,11 @@ const DetailKelas = (props) => {
     const [detailMateri, setDetailMateri] = useState([]);
     const [DaftarKomentar, setDaftarKomentar] = useState([]);
     const [komentar, setKomentar] = useState('');
+    const [progress, setProgress] = useState('');
 
     useEffect(() => {
         getDataMateri();
+        getProgress()
     })
 
     const getDataMateri = () => {
@@ -78,6 +81,25 @@ const DetailKelas = (props) => {
         })
     }
 
+    const getProgress = () => {
+        const token = localStorage.getItem("loginPelajar");
+        const dataSend = {
+            token
+        };
+
+        fetch(`http://127.0.0.1:8000/showProgress`, {
+            method: "POST",
+            body: JSON.stringify(dataSend),
+            headers: {
+            "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(hasil => {
+            console.log(hasil);
+        })
+    }
+
     const handleTambahKomentar = (e) => {
         e.preventDefault();
         const token = localStorage.getItem("loginPelajar");
@@ -97,7 +119,7 @@ const DetailKelas = (props) => {
         })
         .then(res => res.json())
         .then(hasil => {
-            console.log(hasil);
+            setProgress(hasil.data)
         })
     }
 
@@ -105,13 +127,22 @@ const DetailKelas = (props) => {
         <>
             <NavbarLogin nama={nama}/>
             <div className="container">
-                <div className="row my-3">
-                    <h1>{state.judul}</h1>
+                <div className="row mt-5">
+                    <div>
+                        <h3><b>{state.judul}</b></h3>
+                    </div>
                 </div>
-                <div className="row my-5">
+                <div className="row">
+                    <div className="col-lg-6 col-sm-12">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style={{width: `${progress ? progress : '0'}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{progress ? progress : '0'}%</div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row mt-3 mb-5">
                     <div className="col-lg-7 col-sm-12">
                         <div className="row">
-                            <div className="col">
+                            <div className="col mb-4">
                                 {idMateri ? detailMateri.map((data, index) => {
                                     return (
                                         <div key={index}>
@@ -131,15 +162,15 @@ const DetailKelas = (props) => {
                                             url={`${data.link_video}`}
                                             />
 
-                                            <div className="description-materi my-3">
-                                                <h3>{data.judul}</h3>
-                                                <hr />
+                                            <div className="description-materi my-4">
+                                                <h4><b>{data.judul}</b></h4>
                                                 <p>{data.keterangan}</p>
+                                                <hr />
                                             </div>
                                         </div>
                                     );
                                 }) : 
-                                    <h3>Pilih materi disamping</h3>
+                                    <img src={state.gambar} width="100%" alt={state.judul}/>
                                 }
                             </div>
                         </div>
@@ -147,7 +178,7 @@ const DetailKelas = (props) => {
                             <div className="col">
                                 <form onSubmit={(e) => handleTambahKomentar(e)}>
                                     <div class="form-group">
-                                        <label for="exampleFormControlTextarea1"><h2>Tulis Komentar</h2></label>
+                                        <label for="exampleFormControlTextarea1"><h5><b>Tulis Komentar</b></h5></label>
                                         <textarea onChange={(e) => setKomentar(e.target.value) } class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div>
                                     <button type="submit" className="btn btn-outline-primary">submit</button>
@@ -155,13 +186,13 @@ const DetailKelas = (props) => {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col">
+                            <div className="col list-komentar">
                                     {DaftarKomentar?.map((data, index) => {
                                         return (
                                             <>
                                             <div key={index} class="card my-2">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">{data.nama_peserta}</h5>
+                                                    <h5 class="card-title"><b>{data.nama_peserta}</b></h5>
                                                     <p class="card-text">{data.komentar}</p>
                                                 </div>
                                             </div>
@@ -172,6 +203,7 @@ const DetailKelas = (props) => {
                         </div>
                     </div>
                     <div className="col-lg-5 col-sm-12">
+                        <h4><b>Daftar materi</b></h4>
                         <ul class="list-group">
                             {daftarMateri?.map((data, index) => {
                                 return (
@@ -183,6 +215,8 @@ const DetailKelas = (props) => {
 
                 </div>
             </div>
+
+            <Footer />
             
         </>
     );

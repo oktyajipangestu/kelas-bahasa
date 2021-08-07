@@ -3,3 +3,81 @@
 * {
     font-family: 'Poppins', sans-serif;
 }
+
+.jumbotron {
+    background-image: url("https://images.unsplash.com/photo-1551731409-43eb3e517a1a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHNwZWFraW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 400px;
+    color: #fff;
+}
+
+footer {
+    background-color: #367652;
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.input-group-text {
+    background-color: #4DDF97;
+}
+
+
+i {
+    color: #fff;
+}
+
+.login_btn {
+    width: 100%;
+    background-color: #367652;
+    color: #fff;
+}
+
+.login_btn:hover {
+    background-color: #F4C700;
+    font-weight: 600;
+    color: #fff;
+}
+
+.form-login {
+    margin-top: 10vh;
+    box-shadow: 0 0 5px 0px rgb(77, 77, 77);
+    border-radius: 5px;
+    margin-bottom: 10vh;
+}
+
+.form-login-pelajar input, .form-login-pelajar button {
+    border-radius: 10px;
+}
+
+.form-login-pelajar .form-header{
+    background-color: #367652;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.form-login-pelajar .form-body {
+    padding: 30px;
+}
+
+.form-login {
+    padding: 0;
+}
+
+.materi-item {
+    cursor: pointer;
+}
+
+.materi-item:hover {
+    background-color: #367652;
+    color: #fff;
+}
+
+.list-komentar {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px gray solid;
+    border-radius: 5px;
+}

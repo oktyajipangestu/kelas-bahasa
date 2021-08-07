@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import { useHistory, Link } from "react-router-dom";
+import Footer from "../Footer";
 import NavbarLogin from "../NavbarLogin";
 
 const RuangKelas = (props) => {
@@ -54,15 +55,15 @@ const RuangKelas = (props) => {
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">Materi : {data.materi}</li>
-                                        <li class="list-group-item">Pelajar : {data.pelajar}</li>
                                     </ul>
-                                        <Link className="card-body btn btn-info" to={{ pathname: 'detailKelas', state: { id: data.id_kelas, judul: data.judul} }} >Selengkapnya</Link>
+                                        <Link className="card-body btn btn-info" to={{ pathname: 'detailKelas', state: { id: data.id_kelas, judul: data.judul, gambar: data.link_gambar} }} >Selengkapnya</Link>
                                 </div>
                             </div>
                         );
                     })}
                 </div>
             </div>
+            <Footer />
         </>
     );
 }

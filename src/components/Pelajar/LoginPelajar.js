@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import swal from 'sweetalert';
 
 const LoginPelajar = () => {
@@ -51,64 +51,45 @@ const LoginPelajar = () => {
   return (
     <>
       <div className="container">
-        <div className="d-flex justify-content-center h-100">
-          <div className="card">
-            <div className="card-header">
-              <h1>Login User</h1>
-              <div className="d-flex justify-content-end social-icon">
-                <span>
-                  <i className="fab fa-facebook-square"></i>
-                </span>
-                <span>
-                  <i className="fab fa-google-plus-square"></i>
-                </span>
-                <span>
-                  <i className="fab fa-twitter-square"></i>
-                </span>
-              </div>
-            </div>
-
-            <div className="card-body">
-              <form>
-                <div className="input-group form-group">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">
-                      <i className="fas fa-user"></i>
-                    </span>
+        <div className="row justify-content-center form-login-pelajar">
+            <div className="col-md-4 col-sm-9 form-login">
+                <div className="form-header">
+                  <h2>Login Pelajar</h2>
+                  <p>Silahkan login untuk lanjut belajar</p>
+                </div>
+                <div className="form-body">
+                  <form>
+                  <div class="form-group">
+                    <label htmlFor="form-email">Email</label>
+                    <input type="email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="form-control"
+                      placeholder="email" id="form-email"/>
                   </div>
-                  <input
-                    type="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="form-control"
-                    placeholder="email"
-                  ></input>
-                </div>
 
-                <div className="input-group form-group">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">
-                      <i className="fas fa-key"></i>
-                    </span>
+                  <div class="form-group">
+                    <label htmlFor="form-password">Password</label>
+                    <input type="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="form-control"
+                      placeholder="password" id="form-password"/>
                   </div>
-                  <input
-                    type="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="form-control"
-                    placeholder="password"
-                  ></input>
-                </div>
 
-                <div className="form-group">
-                  <button
-                    onClick={(e) => handleSubmit(e)}
-                    className="btn float-right login_btn"
-                  >
-                    LOGIN
-                  </button>
+                  <div className="form-group">
+                    <button
+                      onClick={(e) => handleSubmit(e)}
+                      className="btn login_btn"
+                    >
+                      LOGIN
+                    </button>
+                  </div>
+                </form>
+                <hr />
+                <div>
+                  <p>belum punya akun? <Link to="/registrasiPelajar">Daftar</Link></p>
                 </div>
-              </form>
+                </div>
             </div>
-          </div>
         </div>
       </div>
     </>
