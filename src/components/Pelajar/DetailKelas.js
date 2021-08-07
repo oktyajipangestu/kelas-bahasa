@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Footer from '../Footer';
 import NavbarLogin from '../NavbarLogin';
 
@@ -12,7 +12,7 @@ const DetailKelas = (props) => {
     const [detailMateri, setDetailMateri] = useState([]);
     const [DaftarKomentar, setDaftarKomentar] = useState([]);
     const [komentar, setKomentar] = useState('');
-    const [progress, setProgress] = useState('');
+    const [progress, setProgress] = useState([]);
 
     useEffect(() => {
         getDataMateri();
@@ -96,7 +96,7 @@ const DetailKelas = (props) => {
         })
         .then(res => res.json())
         .then(hasil => {
-            console.log(hasil);
+            setProgress(hasil.data);
         })
     }
 
@@ -119,7 +119,6 @@ const DetailKelas = (props) => {
         })
         .then(res => res.json())
         .then(hasil => {
-            setProgress(hasil.data)
         })
     }
 
@@ -162,6 +161,11 @@ const DetailKelas = (props) => {
                                             url={`${data.link_video}`}
                                             />
 
+                                            <div className="my-3">
+                                                    <button className="btn btn-outline-info mr-3">Sebelumnya</button>
+                                                    <button className="btn btn-info ml-auto">Selesai, dan Lanjutkan</button>
+                                            </div>
+
                                             <div className="description-materi my-4">
                                                 <h4><b>{data.judul}</b></h4>
                                                 <p>{data.keterangan}</p>
@@ -174,6 +178,7 @@ const DetailKelas = (props) => {
                                 }
                             </div>
                         </div>
+                        
                         <div className="row komentar">
                             <div className="col">
                                 <form onSubmit={(e) => handleTambahKomentar(e)}>
@@ -210,6 +215,7 @@ const DetailKelas = (props) => {
                                     <li key={index} class="list-group-item materi-item" onClick={() => getDetailMateri(data.id_materi)}>{data.judul}</li>
                                 );
                             })}
+                            <li class="list-group-item materi-item"><Link to={{ pathname: 'quiz', state: { id: state.id, judul: state.judul} }}>Quiz</Link></li>
                         </ul>
                     </div>
 
