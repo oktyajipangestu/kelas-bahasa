@@ -1,38 +1,28 @@
-.App {
-  text-align: center;
+* {
+  scroll-behavior: smooth;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.jumbotron h1 {
+  font-weight: 600;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.features-item {
+  padding: 20px;
+  box-shadow: 0 0 7px 0 gray;
+  border-radius: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.features-item p {
+  margin: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.kelas-tersedia {
+  background-color: #FBEAC7;
+  padding-top: 75px;
+  padding-bottom: 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.item-class .card:hover {
+  transition: 0.5s;
+  box-shadow: 0 0 15px 0 gray;
 }
