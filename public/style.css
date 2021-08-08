@@ -81,3 +81,36 @@ i {
     border: 1px gray solid;
     border-radius: 5px;
 }
+
+
+/* Styleing Quiz */
+.heading-quiz {
+    background-color: #F4C700;
+    padding-top: 25px;
+    color: #fff;
+    margin-bottom: 50px;
+}
+
+.pertanyaan:hover {
+    transition: 0.35s;
+    box-shadow: 0 0 7.5px 0px gray;
+}
+
+.opsi:hover {
+    font-weight: 700;
+    color: #198DFA;
+}
+
+.soal-card {
+    margin-bottom: 100px;
+}
+
+.lihat-skor {
+    background-color: #4DDF97;
+    color: #fff;
+}
+
+.lihat-skor:hover {
+    background-color: #367652;
+    color: #fff;
+}

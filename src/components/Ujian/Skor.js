@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 const Skor = () => {
-    const { state } = useLocation();
+  const { state } = useLocation();
   const history = useHistory();
   const [skor, setSkor] = useState([]);
 
@@ -20,6 +20,7 @@ const Skor = () => {
     const token = localStorage.getItem("loginPelajar");
     const dataSend = {
       token,
+      id_kelas: state.id,
     };
     fetch(`http://127.0.0.1:8000/selesaiUjian`, {
       method: "POST",
@@ -31,7 +32,7 @@ const Skor = () => {
       .then((res) => res.json())
       .then((hasil) => {
         if (hasil.status === "berhasil") {
-          history.push("/quiz");
+          history.push("/quiz", state);
           return;
         } else {
           history.push("/");
@@ -68,17 +69,27 @@ const Skor = () => {
 
   return (
     <>
-      <div className="card" style={{ margin: "auto" }}>
-        <div className="card-content" style={{ padding: "94px" }}>
-          <div className="content text-center text-black">
-            <h3>Nilai yang kamu peroleh</h3>
-            <h1>{skor.skor ? skor.skor * 10 : null}</h1>
-            <button
-              className="btn btn-info mt-2"
-              onClick={() => handleCobaLagi()}
-            >
-              Coba Lagi
-            </button>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-8">
+            <div className="card mt-5" style={{ margin: "auto" }}>
+              <div className="card-content" style={{ padding: "94px" }}>
+                <div className="content text-center text-black">
+                  <img />
+                  <h3>Nilai yang kamu peroleh</h3>
+                  <h1 className="my-4"><b>{skor.skor ? skor.skor * 10 : null}</b></h1>
+                  <div className="navigasi-skor mt-2">
+                    <button
+                      className="btn btn-outline-info mr-3"
+                      onClick={() => handleCobaLagi()}
+                    >
+                      Coba Lagi
+                    </button>
+                    <Link className="btn btn-info">Dashboard</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

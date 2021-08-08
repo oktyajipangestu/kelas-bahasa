@@ -1,121 +1,126 @@
 import { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
+import Footer from "../Footer";
 
 const Quiz = () => {
-    const { state } = useLocation();
-    const history = useHistory();
-    const [dataSoal, setDataSoal] = useState([]);
-    const [cek, setCek] = useState([]);
-    const [status, setStatus] = useState("");
-    const [showLihatSkor, setShowLihatSkor] = useState(false);
+  const { state } = useLocation();
+  const history = useHistory();
+  const [dataSoal, setDataSoal] = useState([]);
+  const [cek, setCek] = useState([]);
+  const [status, setStatus] = useState("");
+  const [showLihatSkor, setShowLihatSkor] = useState(false);
 
-    useEffect(() => {
-        const login = localStorage.getItem('loginPelajar');
-        if(!login) {
-            history.push('/');
-            return
+  useEffect(() => {
+    const login = localStorage.getItem("loginPelajar");
+    if (!login) {
+      history.push("/");
+      return;
+    }
+    getListSoal();
+  }, []);
+
+  const getListSoal = async () => {
+    const token = localStorage.getItem("loginPelajar");
+    const sendData = {
+      token,
+      id_kelas: state.id,
+    };
+    fetch(`http://127.0.0.1:8000/quiz`, {
+      method: "POST",
+      body: JSON.stringify(sendData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((hasil) => {
+        if (hasil.status === "berhasil") {
+          setDataSoal(hasil);
+        } else {
+          localStorage.removeItem("loginPelajar");
+          history.replace("/");
         }
-        getListSoal();
-    }, []);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
 
-    const getListSoal = async () => {
-        const token = localStorage.getItem("loginPelajar");
-        const sendData = {
-            token,
-            id_kelas: state.id
-        };
+  const handleSubmit = (e, index, data) => {
+    setStatus("");
+    const token = localStorage.getItem("loginPelajar");
+    let newData = cek;
+    const dataSend = {
+      token,
+      id_kelas: state.id,
+      id_soal: data.id_soal,
+      jawaban: e.target.value,
+      id_skor: dataSoal.id_skor,
+    };
+
+    const sendDataSoal = {
+      token,
+      id_kelas: state.id,
+    };
+
+    fetch(`http://127.0.0.1:8000/jawab`, {
+      method: "POST",
+      body: JSON.stringify(dataSend),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((hasil) => {
+        newData[index] = true;
+        setCek(newData);
+        setStatus("hasil");
+        if (hasil.status === "gagal") {
+          history.replace("/");
+          localStorage.removeItem("loginPelajar");
+          return;
+        }
         fetch(`http://127.0.0.1:8000/quiz`, {
-        method: "POST",
-        body: JSON.stringify(sendData),
-        headers: {
+          method: "POST",
+          body: JSON.stringify(sendDataSoal),
+          headers: {
             "Content-Type": "application/json",
-        },
+          },
         })
-        .then((res) => res.json())
-        .then((hasil) => {
-            if (hasil.status === "berhasil") {
-                setDataSoal(hasil);
-            } else {
-                localStorage.removeItem("loginPelajar");
-                history.replace("/");
+          .then((res) => res.json())
+          .then((hasil) => {
+            if (hasil.data === "gagal") {
+              history.replace("/");
+              return;
             }
-        })
-        .catch((err) => {
-            alert(err);
-        });
-    };
-
-    const handleSubmit = (e, index, data) => {
-        setStatus("");
-        const token = localStorage.getItem("loginPelajar");
-        let newData = cek;
-        const dataSend = {
-            token,
-            id_kelas: state.id,
-            id_soal: data.id_soal,
-            jawaban: e.target.value,
-            id_skor: dataSoal.id_skor,
-        };
-
-        const sendDataSoal = {
-            token,
-            id_kelas: state.id
-        }
-
-        fetch(`http://127.0.0.1:8000/jawab`, {
-        method: "POST",
-        body: JSON.stringify(dataSend),
-        headers: {
-            "Content-Type": "application/json",
-        },
-        })
-        .then((res) => res.json())
-        .then((hasil) => {
-            newData[index] = true;
-            setCek(newData);
-            setStatus("hasil");
-            if (hasil.status === "gagal") {
-                history.replace("/");
-                localStorage.removeItem("loginPelajar");
-                 return;
+            if (hasil.data[0].jumlah_jawaban === 10) {
+              setShowLihatSkor(true);
+              return;
             }
-            fetch(`http://127.0.0.1:8000/quiz`, {
-                method: "POST",
-                body: JSON.stringify(sendDataSoal),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
-            .then(res => res.json())
-            .then(hasil => {
-                if(hasil.data === "gagal") {
-                    history.replace("/")
-                    return
-                }
-                if(hasil.data[0].jumlah_jawaban === 10) {
-                    setShowLihatSkor(true);
-                    return
-                }
-            })
-            .catch((err) => {
+          })
+          .catch((err) => {
             alert(err);
-            })
-        })
-        .catch((err) => {
-            alert(err);
-        });
-    };
+          });
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
 
-    return (
-        <>
-        <div className="soal-lomba" style={{ paddingTop: "100px" }}>
-        <h1 className="text-center pb-5">Soal Quiz</h1>
-
+  return (
+    <>
+      <div className="soal-lomba">
+        <div className="heading-quiz">
+          <h1 className="text-center pb-2">
+            <b>Soal Quiz</b>
+          </h1>
+          <h3 className="text-center pb-5">{state.judul}</h3>
+        </div>
         <div className="container soal-card">
           <form>
             {dataSoal?.data?.map((data, index) => {
               return (
-                <div className="soal-1" key={index}>
+                <div className="soal-1 card mb-3 p-3 pertanyaan" key={index}>
                   <div>
                     <p className="m-0">{`${index + 1}. ${data.pertanyaan}`}</p>
                     <div className="soal-1 d-flex flex-column">
@@ -132,7 +137,7 @@ const Quiz = () => {
                                 disabled={cek[index]}
                               />
                             </div>
-                            <div className="ml-3">
+                            <div className="ml-3 opsi">
                               <label
                                 htmlFor={`s${index + 1}-option${index + 1}`}
                               >
@@ -172,7 +177,7 @@ const Quiz = () => {
                                 disabled={cek[index]}
                               />
                             </div>
-                            <div className="ml-3">
+                            <div className="ml-3 opsi">
                               <label
                                 htmlFor={`s${index + 1}-option${index + 3}`}
                               >
@@ -192,7 +197,7 @@ const Quiz = () => {
                                 disabled={cek[index]}
                               />
                             </div>
-                            <div className="ml-3">
+                            <div className="ml-3 opsi">
                               <label
                                 htmlFor={`s${index + 1}-option${index + 4}`}
                               >
@@ -214,7 +219,7 @@ const Quiz = () => {
                                 disabled
                               />
                             </div>
-                            <div className="ml-3">
+                            <div className="ml-3 opsi">
                               <label
                                 htmlFor={`s${index + 1}-option${index + 1}`}
                               >
@@ -234,7 +239,7 @@ const Quiz = () => {
                                 disabled
                               />
                             </div>
-                            <div className="ml-3">
+                            <div className="ml-3 opsi">
                               <label
                                 htmlFor={`s${index + 1}-option${index + 2}`}
                               >
@@ -254,7 +259,7 @@ const Quiz = () => {
                                 disabled
                               />
                             </div>
-                            <div className="ml-3">
+                            <div className="ml-3 opsi">
                               <label
                                 htmlFor={`s${index + 1}-option${index + 3}`}
                               >
@@ -290,11 +295,21 @@ const Quiz = () => {
               );
             })}
           </form>
-          {showLihatSkor ? <Link to={{ pathname: '/skor', state: { id: state.id, judul: state.judul} }}>Lihat Skor</Link> : null}
+          {showLihatSkor ? (
+            <Link className="lihat-skor btn my-5"
+              to={{
+                pathname: "/skor",
+                state: { id: state.id, judul: state.judul },
+              }}
+            >
+              Lihat Skor
+            </Link>
+          ) : null}
         </div>
       </div>
-        </>
-    );
-}
+      <Footer />
+    </>
+  );
+};
 
-export default Quiz
+export default Quiz;
