@@ -13,6 +13,7 @@ const DetailKelas = (props) => {
     const [DaftarKomentar, setDaftarKomentar] = useState([]);
     const [komentar, setKomentar] = useState('');
     const [progress, setProgress] = useState([]);
+    const [detailNow, setDetailNow] = useState('');
 
     useEffect(() => {
         getDataMateri();
@@ -100,6 +101,36 @@ const DetailKelas = (props) => {
         })
     }
 
+    const handleNext = () => {
+        const token = localStorage.getItem("loginPelajar");
+        const dataSend = {
+            token,
+            id_kelas: state.id,
+            id_materi: idMateri
+        }
+
+        fetch(`http://127.0.0.1:8000/onProgress`, {
+            method: "POST",
+            body: JSON.stringify(dataSend),
+            headers: {
+            "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(hasil => {
+            if(hasil.status === "sukses") {
+                getProgress()
+                document.querySelector(`.item-${idMateri}`).classList.add("materi-completed");
+
+                getDetailMateri(daftarMateri)
+            }
+        })
+    }
+
+    const handlePrev = () => {
+
+    }
+
     const handleTambahKomentar = (e) => {
         e.preventDefault();
         const token = localStorage.getItem("loginPelajar");
@@ -126,15 +157,16 @@ const DetailKelas = (props) => {
         <>
             <NavbarLogin nama={nama}/>
             <div className="container">
-                <div className="row mt-5">
+                <div className="row mt-5 mb-3">
                     <div>
-                        <h3><b>{state.judul}</b></h3>
+                        <h3 style={{borderBottom: "3px solid #F4C700", paddingBottom:"10px"}}><b>{state.judul}</b></h3>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row my-3">
                     <div className="col-lg-6 col-sm-12">
+                        Progress Belajar:
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" style={{width: `${progress ? progress : '0'}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{progress ? progress : '0'}%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style={{width: `${progress ? progress : '0'}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{progress ? progress : '0'}%</div>
                         </div>
                     </div>
                 </div>
@@ -162,8 +194,8 @@ const DetailKelas = (props) => {
                                             />
 
                                             <div className="my-3">
-                                                    <button className="btn btn-outline-info mr-3">Sebelumnya</button>
-                                                    <button className="btn btn-info ml-auto">Selesai, dan Lanjutkan</button>
+                                                    <button className="btn btn-outline-info mr-3" onClick={() => handlePrev()}>Sebelumnya</button>
+                                                    <button className="btn btn-info ml-auto" onClick={() => handleNext()}>Selesai, dan Lanjutkan</button>
                                             </div>
 
                                             <div className="description-materi my-4">
@@ -212,10 +244,10 @@ const DetailKelas = (props) => {
                         <ul class="list-group">
                             {daftarMateri?.map((data, index) => {
                                 return (
-                                    <li key={index} class="list-group-item materi-item" onClick={() => getDetailMateri(data.id_materi)}>{data.judul}</li>
+                                    <li key={index} class={`list-group-item materi-item item-${data.id_materi}`} onClick={() => getDetailMateri(data.id_materi)}>{data.judul}</li>
                                 );
                             })}
-                            <li class="list-group-item materi-item"><Link to={{ pathname: 'quiz', state: { id: state.id, judul: state.judul} }}>Quiz</Link></li>
+                            {progress == "100" ? <li class="list-group-item materi-item"><Link to={{ pathname: 'quiz', state: { id: state.id, judul: state.judul}}} className="quiz-item">Quiz</Link></li> : null}
                         </ul>
                     </div>
 

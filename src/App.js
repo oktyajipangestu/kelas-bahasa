@@ -26,7 +26,6 @@ function App() {
       });
   }
 
-  console.log(daftarKelas);
   return (
     <div className="App">
       <header>
@@ -81,7 +80,7 @@ function App() {
             <div className="row justify-content-center mt-5">
                 {daftarKelas.map((data, index) => {
                         return (
-                            <div key={index} className="col-md-6 col-lg-3 col-sm-12 item-class">
+                            <div key={index} className="col-md-6 col-lg-3 col-sm-12 item-class mb-2">
                                 <div class="card" style={{width: "18rem;"}}>
                                     <img src={data.link_gambar} class="card-img-top" alt="..." />
                                     <div class="card-body">

@@ -42,6 +42,10 @@ const RuangKelas = (props) => {
         <>
             <NavbarLogin nama={nama} />
             <div className="container">
+                <div className="heading-ruangkelas mt-5 text-center">
+                    <h2><b>Kelas Tersedia</b></h2>
+                    <p>Pelajari bahasa asing dan public speaking darimana saja dan kapan saja. Pilih kelas sesuai kebutuhan kamu</p>
+                </div>
                 <input class="form-control my-5" type="text" placeholder="Cari Kelas" onChange={(e) => setCari(e.target.value)}/>
                 <div className="row my-5">
                     {dataKelas.filter((data) => data.judul.toLowerCase().includes(cari.toLowerCase())).map((data, index) => {
@@ -53,9 +57,9 @@ const RuangKelas = (props) => {
                                         <h5 class="card-title">{data.judul}</h5>
                                         <p class="card-text">{data.keterangan}</p>
                                     </div>
-                                    <ul class="list-group list-group-flush">
+                                    {/* <ul class="list-group list-group-flush">
                                         <li class="list-group-item">Materi : {data.materi}</li>
-                                    </ul>
+                                    </ul> */}
                                         <Link className="card-body btn btn-info" to={{ pathname: 'detailKelas', state: { id: data.id_kelas, judul: data.judul, gambar: data.link_gambar} }} >Selengkapnya</Link>
                                 </div>
                             </div>

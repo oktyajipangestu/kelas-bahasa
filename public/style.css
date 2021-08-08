@@ -114,3 +114,12 @@ i {
     background-color: #367652;
     color: #fff;
 }
+
+.materi-completed {
+    background-color: #2B9755;
+    color: #fff;
+}
+
+.quiz-item {
+    text-decoration: none;
+}
