@@ -13,7 +13,6 @@ const DetailKelas = (props) => {
     const [DaftarKomentar, setDaftarKomentar] = useState([]);
     const [komentar, setKomentar] = useState('');
     const [progress, setProgress] = useState([]);
-    const [detailNow, setDetailNow] = useState('');
 
     useEffect(() => {
         getDataMateri();
@@ -247,7 +246,7 @@ const DetailKelas = (props) => {
                                     <li key={index} class={`list-group-item materi-item item-${data.id_materi}`} onClick={() => getDetailMateri(data.id_materi)}>{data.judul}</li>
                                 );
                             })}
-                            {progress == "100" ? <li class="list-group-item materi-item"><Link to={{ pathname: 'quiz', state: { id: state.id, judul: state.judul}}} className="quiz-item">Quiz</Link></li> : null}
+                            {progress === "100" ? <li class="list-group-item materi-item"><Link to={{ pathname: 'quiz', state: { id: state.id, judul: state.judul}}} className="quiz-item">Quiz</Link></li> : null}
                         </ul>
                     </div>
 

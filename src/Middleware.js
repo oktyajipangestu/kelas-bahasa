@@ -17,6 +17,7 @@ import RuangKelas from './components/Pelajar/RuangKelas';
 import DetailKelas from './components/Pelajar/DetailKelas';
 import Quiz from './components/Ujian/Quiz';
 import Skor from './components/Ujian/Skor';
+import DetailKelasPengajar from './components/Pengajar/DetailKelasPengajar';
 
 const Middleware = () => {
     return (
@@ -33,6 +34,7 @@ const Middleware = () => {
                     <Route exact path="/listPengajar" render={() => <ListPengajar />} />
                     <Route exact path="/tambahPengajar" render={() => <TambahPengajar />} />
                     <Route exact path="/halamanPengajar" render={() => <HalamanPengajar />} />
+                    <Route exact path="/detailKelasPengajar" render={() => <DetailKelasPengajar />} />
 
                     <Route exact path="/listPelajar" render={() => <ListPelajar />} />
                     <Route exact path="/listKelas" render={() => <ListKelas />} />
@@ -45,6 +47,8 @@ const Middleware = () => {
                     <Route exact path="/detailKelas" render={() => <DetailKelas />} />
                     <Route exact path="/quiz" render={() => <Quiz />} />
                     <Route exact path="/skor" render={() => <Skor />} />
+
+                    
                 </Switch>
             </Router>
         </>

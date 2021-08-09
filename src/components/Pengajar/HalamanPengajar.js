@@ -1,23 +1,81 @@
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import NavbarAdmin from "../Admin/NavbarAdmin";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import NavbarPengajar from "./NavbarPengajar";
 
 const HalamanPengajar = () => {
+    const history = useHistory();
+    const [dataPelajar, setDataPelajar] = useState([]);
+    const [DataKelas, setDataKelas] = useState([]);
+
+    useEffect(() => {
+        const token = localStorage.getItem('loginPengajar');
+        if(!token) {
+            history.push('/loginPengajar')
+        } else {
+            getDataPelajar();
+            getDataKelas();
+        }
+    }, []);
+
+    const getDataPelajar = () => {
+        const token = localStorage.getItem('loginPengajar');
+        const dataSend = {
+            token
+        }
+        fetch(`http://127.0.0.1:8000/listPelajar`, {
+            method: "POST",
+            body: JSON.stringify(dataSend),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(hasil => {
+            console.log(hasil)
+            if(hasil.status === 'berhasil') {
+                setDataPelajar(hasil.data);
+            }
+        })
+    }
+
+    const getDataKelas = () => {
+        const token = localStorage.getItem('loginPengajar');
+        const dataSend = {
+            token
+        }
+        fetch(`http://127.0.0.1:8000/listKelasPengajar`, {
+            method: "POST",
+            body: JSON.stringify(dataSend),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(hasil => {
+            console.log(hasil)
+            if(hasil.status === 'berhasil') {
+                setDataKelas(hasil.data);
+            }
+        })
+    }
+
     return (
         <>
-            <NavbarAdmin />
+            <NavbarPengajar />
             <Container className="mt-5">
                 <div class="card my-3">
                     <div class="card-body">
                         <h4 class="card-title">Ringkasan Pelajar</h4>
-                        <p class="card-text">Jumlah Pelajar <b>10</b></p>
+                        <p class="card-text">Jumlah Pelajar: <b> {dataPelajar.length}</b> Pelajar</p>
                         <Link to="/listPelajar" className="btn btn-primary">Selengkapnya</Link>
                     </div>
                 </div>
                 <div class="card my-3">
                     <div class="card-body">
                         <h4 class="card-title">Ringkasan Kelas</h4>
-                        <p class="card-text">Jumlah Kelas<b>10</b></p>
+                        <p class="card-text">Jumlah Kelas: <b> {DataKelas.length}</b> Kelas</p>
                         <Link to="/listKelas" className="btn btn-primary">Selengkapnya</Link>
                     </div>
                 </div>

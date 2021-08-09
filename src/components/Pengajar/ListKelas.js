@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Table, Modal } from "react-bootstrap";
-import NavbarAdmin from "../Admin/NavbarAdmin";
 import { Link } from "react-router-dom";
+import NavbarPengajar from "./NavbarPengajar";
 
 const ListKelas = () => {
     const history = useHistory();
@@ -78,10 +78,6 @@ const ListKelas = () => {
       });
 
     }
-
-    const handleDetail = () => {
-
-    }
     
     return (
         <>
@@ -100,17 +96,16 @@ const ListKelas = () => {
                 </Modal.Footer>
             </Modal>
 
-            <NavbarAdmin />
+            <NavbarPengajar />
             <div className="container my-5">
-            <Link className="btn btn-info" to="/tambahKelas">+ Tambah Kelas</Link>
+                <Link className="btn btn-outline-info mr-2" to="/halamanPengajar">Kembali</Link>
+                <Link className="btn btn-info" to="/tambahKelas">+ Tambah Kelas</Link>
                 <Table striped bordered hover className="my-5">
                     <thead className="thead-dark">
                         <tr>
                         <th>#</th>
                         <th>Kelas</th>
                         <th>Deskripsi</th>
-                        <th>Materi</th>
-                        <th>Pelajar</th>
                         <th>Aksi</th>
                         </tr>
                     </thead>
@@ -121,15 +116,16 @@ const ListKelas = () => {
                             <td>{index + 1}</td>
                             <td>{data.judul}</td>
                             <td>{data.keterangan}</td>
-                            <td>{data.materi}</td>
-                            <td>{data.pelajar}</td>
                             <td>
-                                <button
-                                className="btn btn-info mr-2"
-                                onClick={() => handleDetail(data.id_kelas)}
+                                <Link
+                                className="btn btn-primary mr-2"
+                                to={{
+                                    pathname: "/detailKelasPengajar",
+                                    state: { id: data.id_kelas, judul: data.judul },
+                                  }}
                                 >
                                 detail
-                                </button>
+                                </Link>
                                 <button
                                 className="btn btn-danger"
                                 onClick={() => handleHapus(data.id_kelas)}

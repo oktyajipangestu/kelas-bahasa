@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Button, Table, Modal } from "react-bootstrap";
-import NavbarAdmin from "../Admin/NavbarAdmin";
+import NavbarPengajar from "./NavbarPengajar";
 
 const ListPelajar = () => {
     const history = useHistory();
@@ -95,8 +95,9 @@ const ListPelajar = () => {
                 </Modal.Footer>
             </Modal>
 
-            <NavbarAdmin />
+            <NavbarPengajar />
             <div className="container my-5">
+                <Link className="btn btn-outline-info" to="/halamanPengajar"><i style={{color:"teal"}} class="fas fa-arrow-left"></i>  Kembali</Link>
                 <Table striped bordered hover className="my-5">
                     <thead className="thead-dark">
                         <tr>
