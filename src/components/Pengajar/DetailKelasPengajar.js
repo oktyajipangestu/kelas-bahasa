@@ -29,7 +29,7 @@ const DetailKelasPengajar = (props) => {
             id_kelas: state.id
         };
 
-        fetch(`http://127.0.0.1:8000/listMateriPengajar`, {
+        fetch(`${process.env.REACT_APP_API}/listMateriPengajar`, {
             method: "POST",
             body: JSON.stringify(dataSend),
             headers: {
@@ -59,7 +59,7 @@ const DetailKelasPengajar = (props) => {
         return;
         }
 
-        fetch(`http://127.0.0.1:8000/tambahMateri`, {
+        fetch(`${process.env.REACT_APP_API}/tambahMateri`, {
         method: 'POST',
         body: JSON.stringify(dataSend),
         headers: {
@@ -144,7 +144,7 @@ const DetailKelasPengajar = (props) => {
           token: token
         }
     
-        fetch(`http://127.0.0.1:8000/hapusMateri`, {
+        fetch(`${process.env.REACT_APP_API}/hapusMateri`, {
           method: 'POST',
           body: JSON.stringify(dataSend),
           headers: {

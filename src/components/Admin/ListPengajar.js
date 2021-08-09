@@ -24,7 +24,7 @@ const ListPengajar = () => {
         const dataSend = {
             token
         }
-        fetch(`http://127.0.0.1:8000/listPengajar`, {
+        fetch(`${process.env.REACT_APP_API}/listPengajar`, {
             method: "POST",
             body: JSON.stringify(dataSend),
             headers: {

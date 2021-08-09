@@ -16,7 +16,8 @@ const DetailKelas = (props) => {
 
     useEffect(() => {
         getDataMateri();
-        getProgress()
+        getProgress();
+        getDataKomentar();
     })
 
     const getDataMateri = () => {
@@ -26,7 +27,7 @@ const DetailKelas = (props) => {
             id_kelas: state.id
         };
 
-        fetch(`http://127.0.0.1:8000/listMateriPelajar`, {
+        fetch(`${process.env.REACT_APP_API}/listMateriPelajar`, {
             method: "POST",
             body: JSON.stringify(dataSend),
             headers: {
@@ -46,7 +47,7 @@ const DetailKelas = (props) => {
             id_materi: id
         };
 
-        fetch(`http://127.0.0.1:8000/detailMateri`, {
+        fetch(`${process.env.REACT_APP_API}/detailMateri`, {
             method: "POST",
             body: JSON.stringify(dataSend),
             headers: {
@@ -68,7 +69,7 @@ const DetailKelas = (props) => {
             id_materi: idMateri
         };
 
-        fetch(`http://127.0.0.1:8000/listKomentar`, {
+        fetch(`${process.env.REACT_APP_API}/listKomentar`, {
             method: "POST",
             body: JSON.stringify(dataSend),
             headers: {
@@ -87,7 +88,7 @@ const DetailKelas = (props) => {
             token
         };
 
-        fetch(`http://127.0.0.1:8000/showProgress`, {
+        fetch(`${process.env.REACT_APP_API}/showProgress`, {
             method: "POST",
             body: JSON.stringify(dataSend),
             headers: {
@@ -108,7 +109,7 @@ const DetailKelas = (props) => {
             id_materi: idMateri
         }
 
-        fetch(`http://127.0.0.1:8000/onProgress`, {
+        fetch(`${process.env.REACT_APP_API}/onProgress`, {
             method: "POST",
             body: JSON.stringify(dataSend),
             headers: {
@@ -140,7 +141,7 @@ const DetailKelas = (props) => {
             nama_peserta: nama
         }
 
-        fetch(`http://127.0.0.1:8000/tambahKomentar`, {
+        fetch(`${process.env.REACT_APP_API}/tambahKomentar`, {
             method: "POST",
             body: JSON.stringify(dataSend),
             headers: {
@@ -149,6 +150,7 @@ const DetailKelas = (props) => {
         })
         .then(res => res.json())
         .then(hasil => {
+            getDataKomentar();
         })
     }
 
@@ -212,12 +214,12 @@ const DetailKelas = (props) => {
                         
                         <div className="row komentar">
                             <div className="col">
-                                <form onSubmit={(e) => handleTambahKomentar(e)}>
+                                <form>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1"><h5><b>Tulis Komentar</b></h5></label>
-                                        <textarea onChange={(e) => setKomentar(e.target.value) } class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <textarea onChange={(e) => setKomentar(e.target.value) } value={komentar} class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div>
-                                    <button type="submit" className="btn btn-outline-primary">submit</button>
+                                    <button type="submit" className="btn btn-outline-primary"  onClick={(e) => handleTambahKomentar(e)}>submit</button>
                                 </form>
                             </div>
                         </div>
@@ -246,7 +248,7 @@ const DetailKelas = (props) => {
                                     <li key={index} class={`list-group-item materi-item item-${data.id_materi}`} onClick={() => getDetailMateri(data.id_materi)}>{data.judul}</li>
                                 );
                             })}
-                            {progress === "100" ? <li class="list-group-item materi-item"><Link to={{ pathname: 'quiz', state: { id: state.id, judul: state.judul}}} className="quiz-item">Quiz</Link></li> : null}
+                            {progress == "100" ? <li class="list-group-item materi-item"><Link to={{ pathname: 'quiz', state: { id: state.id, judul: state.judul}}} className="quiz-item">Quiz</Link></li> : null}
                         </ul>
                     </div>
 

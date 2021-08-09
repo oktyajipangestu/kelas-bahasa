@@ -10,22 +10,19 @@ const HalamanAdmin = () => {
                 <div class="card my-3">
                     <div class="card-body">
                         <h4 class="card-title">Ringkasan Admin</h4>
-                        <p class="card-text">Jumlah Admin <b>10</b></p>
                         <Link to="/listAdmin" className="btn btn-primary">Selengkapnya</Link>
                     </div>
                 </div>
                 <div class="card my-3">
                     <div class="card-body">
                         <h4 class="card-title">Ringkasan Pengajar</h4>
-                        <p class="card-text">Jumlah Pengajar <b>10</b></p>
                         <Link to="/listPengajar" className="btn btn-primary">Selengkapnya</Link>
                     </div>
                 </div>
                 <div class="card my-3">
                     <div class="card-body">
                         <h4 class="card-title">Ringkasan Pelajar</h4>
-                        <p class="card-text">Jumlah Pelajar <b>10</b></p>
-                        <Link to="/listAdmin" className="btn btn-primary">Selengkapnya</Link>
+                        <Link to="/listPelajarAdmin" className="btn btn-primary">Selengkapnya</Link>
                     </div>
                 </div>
             </Container>

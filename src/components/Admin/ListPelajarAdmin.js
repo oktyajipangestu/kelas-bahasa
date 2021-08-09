@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { Button, Table, Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import NavbarAdmin from "./NavbarAdmin";
+import { useState, useEffect } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import { Table, Modal, Button } from 'react-bootstrap';
 
-const ListAdmin = () => {
+const ListPelajarAdmin = () => {
     const history = useHistory();
-    const [dataAdmin, setDataAdmin] = useState([]);
+    const [dataPelajar, setDataPelajar] = useState([]);
     const [show, setShow] = useState('');
     const [idHapus, setIdHapus] = useState('');
 
@@ -15,16 +13,16 @@ const ListAdmin = () => {
         if(!token) {
             history.push('/loginAdmin')
         } else {
-            getDataAdmin();
+            getDataPelajar();
         }
     }, []);
 
-    const getDataAdmin = () => {
+    const getDataPelajar = () => {
         const token = localStorage.getItem('loginAdmin');
         const dataSend = {
             token
         }
-        fetch(`${process.env.REACT_APP_API}/listAdmin`, {
+        fetch(`${process.env.REACT_APP_API}/listPelajar`, {
             method: "POST",
             body: JSON.stringify(dataSend),
             headers: {
@@ -33,8 +31,9 @@ const ListAdmin = () => {
         })
         .then(res => res.json())
         .then(hasil => {
+            console.log(hasil)
             if(hasil.status === 'berhasil') {
-                setDataAdmin(hasil.data);
+                setDataPelajar(hasil.data);
             }
         })
     }
@@ -49,13 +48,13 @@ const ListAdmin = () => {
     }
 
     const handleTriggerHapus = () => {
-        const token = localStorage.getItem('loginAdmin');
+        const token = localStorage.getItem('loginPengajar');
         const dataSend = {
             token,
-            id_admin : idHapus
+            id_pengajar : idHapus
         }
 
-        fetch(`${process.env.REACT_APP_API}/hapusAdmin`, {
+        fetch(`${process.env.REACT_APP_API}/hapusPelajar`, {
             method: "POST",
             body: JSON.stringify(dataSend),
             headers: {
@@ -65,11 +64,11 @@ const ListAdmin = () => {
         .then((res) => res.json())
         .then((hasil) => {
             if (hasil.status === "berhasil") {
-                alert("Data Berhasil di Simpan");
+                alert("Data Berhasil di Hapus");
                 setShow(false);
-                getDataAdmin();
+                getDataPelajar();
             } else {
-                history.push("/login-admin");
+                history.push("/listPelajar");
             }
       })
       .catch((err) => {
@@ -77,12 +76,13 @@ const ListAdmin = () => {
       });
 
     }
-    
+
+
     return (
         <>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Hapus Admin</Modal.Title>
+                <Modal.Title>Hapus Pelajar</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Anda Yakin Untuk Menghapus Data</Modal.Body>
                 <Modal.Footer>
@@ -95,9 +95,8 @@ const ListAdmin = () => {
                 </Modal.Footer>
             </Modal>
 
-            <NavbarAdmin />
             <div className="container my-5">
-                <Link className="btn btn-info" to="/tambahAdmin">+ Tambah Admin</Link>
+                <Link className="btn btn-outline-info" to="/halamanPengajar"><i style={{color:"teal"}} class="fas fa-arrow-left"></i>  Kembali</Link>
                 <Table striped bordered hover className="my-5">
                     <thead className="thead-dark">
                         <tr>
@@ -108,7 +107,7 @@ const ListAdmin = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {dataAdmin.map((data, index) => {
+                        {dataPelajar.map((data, index) => {
                         return (
                             <tr key={index}>
                             <td>{index + 1}</td>
@@ -117,7 +116,7 @@ const ListAdmin = () => {
                             <td>
                                 <button
                                 className="btn btn-danger"
-                                onClick={() => handleHapus(data.id_admin)}
+                                onClick={() => handleHapus(data.id_pelajar)}
                                 >
                                 hapus
                                 </button>
@@ -130,6 +129,7 @@ const ListAdmin = () => {
             </div>
         </>
     );
+
 }
 
-export default ListAdmin;
+export default ListPelajarAdmin;

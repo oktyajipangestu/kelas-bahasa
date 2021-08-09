@@ -7,8 +7,8 @@ const Navbar = (props) => {
     const history = useHistory();
 
     useEffect(() => {
-        const login = localStorage.getItem("loginPelajar");
-        if(login) {
+        const loginStatus = localStorage.getItem("loginPelajar");
+        if(loginStatus) {
             setStatusLogin(true);
         }
     }, []);

@@ -24,7 +24,7 @@ const RuangKelas = (props) => {
             token
         }
 
-        fetch(`http://127.0.0.1:8000/listKelasPelajar`, {
+        fetch(`${process.env.REACT_APP_API}/listKelasPelajar`, {
             method: "POST",
             body: JSON.stringify(dataSend),
             headers: {

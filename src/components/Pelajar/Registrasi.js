@@ -29,7 +29,7 @@ const Registrasi = () => {
     if (nama === "" || email === "" || password === "" || konfirmPassword === "") {
       swal('Failed', 'Gagal Daftar', 'error');
     } else {
-      fetch(`http://127.0.0.1:8000/registrasiPelajar`, {
+      fetch(`${process.env.REACT_APP_API}/registrasiPelajar`, {
         method: "POST",
         body: JSON.stringify(dataSend),
         headers: {

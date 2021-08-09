@@ -13,7 +13,7 @@ function App() {
   });
 
   const getKelas = () => {
-    fetch(`http://127.0.0.1:8000/listKelas`, {
+    fetch(`${process.env.REACT_APP_API}/listKelas`, {
       method: "GET",
       body: JSON.stringify(),
       headers: {

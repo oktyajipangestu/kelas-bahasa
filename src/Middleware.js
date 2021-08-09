@@ -18,6 +18,7 @@ import DetailKelas from './components/Pelajar/DetailKelas';
 import Quiz from './components/Ujian/Quiz';
 import Skor from './components/Ujian/Skor';
 import DetailKelasPengajar from './components/Pengajar/DetailKelasPengajar';
+import ListPelajarAdmin from './components/Admin/ListPelajarAdmin';
 
 const Middleware = () => {
     return (
@@ -29,6 +30,7 @@ const Middleware = () => {
                     <Route exact path="/halamanAdmin" render={() => <HalamanAdmin />} />
                     <Route exact path="/listAdmin" render={() => <ListAdmin />} />
                     <Route exact path="/tambahAdmin" render={() => <TambahAdmin />} />
+                    <Route exact path="/listPelajarAdmin" render={() => <ListPelajarAdmin />} />
 
                     <Route exact path="/loginPengajar" render={() => <LoginPengajar />} />
                     <Route exact path="/listPengajar" render={() => <ListPengajar />} />

@@ -21,7 +21,7 @@ const TambahAdmin = () => {
         if(nama === "" || email === "" || password === ""){
             alert('Data harus diisi semua');
         } else {
-            fetch(`http://127.0.0.1:8000/tambahAdmin` , {
+            fetch(`${process.env.REACT_APP_API}/tambahAdmin` , {
                 method: "POST",
                 body: JSON.stringify(dataSend),
                 headers: {

@@ -25,7 +25,7 @@ const LoginPelajar = () => {
     if (email === "" || password === "") {
       swal('Failed', 'Gagal Login', 'error');
     } else {
-      fetch(`http://127.0.0.1:8000/loginPelajar`, {
+      fetch(`${process.env.REACT_APP_API}/loginPelajar`, {
         method: "POST",
         body: JSON.stringify(dataSend),
         headers: {
