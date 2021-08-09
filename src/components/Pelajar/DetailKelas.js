@@ -166,8 +166,8 @@ const DetailKelas = (props) => {
                 <div className="row my-3">
                     <div className="col-lg-6 col-sm-12">
                         Progress Belajar:
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style={{width: `${progress ? progress : '0'}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{progress ? progress : '0'}%</div>
+                        <div className="progress">
+                            <div className="progress-bar bg-success" role="progressbar" style={{width: `${progress ? progress : '0'}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{progress ? progress : '0'}%</div>
                         </div>
                     </div>
                 </div>
@@ -215,7 +215,7 @@ const DetailKelas = (props) => {
                         <div className="row komentar">
                             <div className="col">
                                 <form>
-                                    <div class="form-group">
+                                    <div className="form-group">
                                         <label for="exampleFormControlTextarea1"><h5><b>Tulis Komentar</b></h5></label>
                                         <textarea onChange={(e) => setKomentar(e.target.value) } value={komentar} class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div>
@@ -228,10 +228,10 @@ const DetailKelas = (props) => {
                                     {DaftarKomentar?.map((data, index) => {
                                         return (
                                             <>
-                                            <div key={index} class="card my-2">
-                                                <div class="card-body">
-                                                    <h5 class="card-title"><b>{data.nama_peserta}</b></h5>
-                                                    <p class="card-text">{data.komentar}</p>
+                                            <div key={index} className="card my-2">
+                                                <div className="card-body">
+                                                    <h5 className="card-title"><b>{data.nama_peserta}</b></h5>
+                                                    <p className="card-text">{data.komentar}</p>
                                                 </div>
                                             </div>
                                             </>
@@ -242,13 +242,13 @@ const DetailKelas = (props) => {
                     </div>
                     <div className="col-lg-5 col-sm-12">
                         <h4><b>Daftar materi</b></h4>
-                        <ul class="list-group">
+                        <ul className="list-group">
                             {daftarMateri?.map((data, index) => {
                                 return (
-                                    <li key={index} class={`list-group-item materi-item item-${data.id_materi}`} onClick={() => getDetailMateri(data.id_materi)}>{data.judul}</li>
+                                    <li key={index} className={`list-group-item materi-item item-${data.id_materi}`} onClick={() => getDetailMateri(data.id_materi)}>{data.judul}</li>
                                 );
                             })}
-                            {progress === 100 ? <li class="list-group-item materi-item"><Link to={{ pathname: 'quiz', state: { id: state.id, judul: state.judul}}} className="quiz-item">Quiz</Link></li> : null}
+                            {progress === 100 ? <li className="list-group-item materi-item"><Link to={{ pathname: 'quiz', state: { id: state.id, judul: state.judul}}} className="quiz-item">Quiz</Link></li> : null}
                         </ul>
                     </div>
 
