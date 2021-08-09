@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import { Link, useLocation } from 'react-router-dom';
 import Footer from '../Footer';
-import Navbar from '../Navbar';
+import NavbarLogin from '../NavbarLogin';
 
 const DetailKelas = (props) => {
     const nama = localStorage.getItem("pelajar");
@@ -156,7 +156,7 @@ const DetailKelas = (props) => {
 
     return(
         <>
-            <Navbar nama={nama} />
+            <NavbarLogin nama={nama} />
             <div className="container">
                 <div className="row mt-5 mb-3">
                     <div>
@@ -248,7 +248,7 @@ const DetailKelas = (props) => {
                                     <li key={index} class={`list-group-item materi-item item-${data.id_materi}`} onClick={() => getDetailMateri(data.id_materi)}>{data.judul}</li>
                                 );
                             })}
-                            {progress == "100" ? <li class="list-group-item materi-item"><Link to={{ pathname: 'quiz', state: { id: state.id, judul: state.judul}}} className="quiz-item">Quiz</Link></li> : null}
+                            {progress === 100 ? <li class="list-group-item materi-item"><Link to={{ pathname: 'quiz', state: { id: state.id, judul: state.judul}}} className="quiz-item">Quiz</Link></li> : null}
                         </ul>
                     </div>
 

@@ -116,7 +116,7 @@ const Registrasi = () => {
                 <br />
                 <hr />
                 <div>
-                  <p>belum punya akun? <Link to="/registrasiPelajar">Daftar</Link></p>
+                  <p>Sudah punya akun? <Link to="/loginPelajar">Masuk</Link></p>
                 </div>
                 </div>
             </div>

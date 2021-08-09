@@ -96,7 +96,7 @@ const ListPelajarAdmin = () => {
             </Modal>
 
             <div className="container my-5">
-                <Link className="btn btn-outline-info" to="/halamanPengajar"><i style={{color:"teal"}} class="fas fa-arrow-left"></i>  Kembali</Link>
+                <Link className="btn btn-outline-info" to="/halamanAdmin"><i style={{color:"teal"}} class="fas fa-arrow-left"></i>  Kembali</Link>
                 <Table striped bordered hover className="my-5">
                     <thead className="thead-dark">
                         <tr>

@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import { useHistory, Link } from "react-router-dom";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
+import NavbarLogin from "../NavbarLogin";
 
 const RuangKelas = (props) => {
     const nama = localStorage.getItem("pelajar");
@@ -40,7 +41,7 @@ const RuangKelas = (props) => {
     }
     return (
         <>
-            <Navbar nama={nama} /> 
+            <NavbarLogin nama={nama} />
             <div className="container">
                 <div className="heading-ruangkelas mt-5 text-center">
                     <h2><b>Kelas Tersedia</b></h2>

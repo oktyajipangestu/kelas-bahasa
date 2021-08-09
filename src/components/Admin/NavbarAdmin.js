@@ -1,4 +1,12 @@
+import { useHistory } from 'react-router-dom';
+
 const NavbarAdmin = () => {
+    const history = useHistory();
+
+    const logOut = () => {
+        localStorage.removeItem('dataLoginAdmin');
+        history.push('/loginAdmin');
+    }
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -10,7 +18,7 @@ const NavbarAdmin = () => {
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <form class="form-inline my-2 my-lg-0 ml-auto">
-                        <button class="btn btn-danger my-2 my-sm-0" type="submit">Logout</button>
+                            <button class="btn btn-danger my-2 my-sm-0" type="submit" onClick={() => logOut()}>Logout</button>
                         </form>
                     </div>
                 </div>

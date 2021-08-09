@@ -19,6 +19,7 @@ import Quiz from './components/Ujian/Quiz';
 import Skor from './components/Ujian/Skor';
 import DetailKelasPengajar from './components/Pengajar/DetailKelasPengajar';
 import ListPelajarAdmin from './components/Admin/ListPelajarAdmin';
+import Dashboard from './components/Pelajar/Dashboard';
 
 const Middleware = () => {
     return (
@@ -49,7 +50,7 @@ const Middleware = () => {
                     <Route exact path="/detailKelas" render={() => <DetailKelas />} />
                     <Route exact path="/quiz" render={() => <Quiz />} />
                     <Route exact path="/skor" render={() => <Skor />} />
-
+                    <Route exact path="/dashboard" render={() => <Dashboard />} />
                     
                 </Switch>
             </Router>
