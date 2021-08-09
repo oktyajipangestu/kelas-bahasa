@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import { Link, useLocation } from 'react-router-dom';
 import Footer from '../Footer';
-import NavbarLogin from '../NavbarLogin';
+import Navbar from '../Navbar';
 
 const DetailKelas = (props) => {
     const nama = localStorage.getItem("pelajar");
@@ -154,7 +154,7 @@ const DetailKelas = (props) => {
 
     return(
         <>
-            <NavbarLogin nama={nama}/>
+            <Navbar nama={nama} />
             <div className="container">
                 <div className="row mt-5 mb-3">
                     <div>
