@@ -20,6 +20,10 @@ import Skor from './components/Ujian/Skor';
 import DetailKelasPengajar from './components/Pengajar/DetailKelasPengajar';
 import ListPelajarAdmin from './components/Admin/ListPelajarAdmin';
 import Dashboard from './components/Pelajar/Dashboard';
+import RuangDiskusi from './components/Pelajar/RuangDiskusi';
+import DetailDiskusi from './components/Pelajar/DetailDiskusi';
+import ListKelasDiskusi from './components/Pengajar/ListKelasDiskusi';
+import DetailDiskusiPengajar from './components/Pengajar/DetailDiskusiPengajar';
 
 const Middleware = () => {
     return (
@@ -38,6 +42,8 @@ const Middleware = () => {
                     <Route exact path="/tambahPengajar" render={() => <TambahPengajar />} />
                     <Route exact path="/halamanPengajar" render={() => <HalamanPengajar />} />
                     <Route exact path="/detailKelasPengajar" render={() => <DetailKelasPengajar />} />
+                    <Route exact path="/listKelasDiskusi" render={() => <ListKelasDiskusi />} />
+                    <Route exact path="/detailDiskusiPengajar" render={() => <DetailDiskusiPengajar />} />
 
                     <Route exact path="/listPelajar" render={() => <ListPelajar />} />
                     <Route exact path="/listKelas" render={() => <ListKelas />} />
@@ -51,6 +57,9 @@ const Middleware = () => {
                     <Route exact path="/quiz" render={() => <Quiz />} />
                     <Route exact path="/skor" render={() => <Skor />} />
                     <Route exact path="/dashboard" render={() => <Dashboard />} />
+
+                    <Route exact path="/ruangDiskusi" render={() => <RuangDiskusi />} />
+                    <Route exact path="/detailDiskusi" render={() => <DetailDiskusi />} />
                     
                 </Switch>
             </Router>

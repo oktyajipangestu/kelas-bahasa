@@ -27,22 +27,22 @@ const Navbar = (props) => {
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item">
+                                <a className="nav-link active" href="/">Home <span className="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="/ruangKelas">Kelas <span class="sr-only">(current)</span></a>
+                            <li className="nav-item">
+                                <a className="nav-link active" href="/ruangKelas">Kelas <span className="sr-only">(current)</span></a>
                             </li>
                         </ul>
                         {statusLogin ?
-                        <form class="form-inline my-2 my-lg-0 ml-auto">
-                            <i class="far fa-user"></i> {props.nama}
-                            <button class="btn btn-danger my-2 my-sm-0 ml-3" type="submit" onClick={() => logOut()}>Logout</button>
+                        <form className="form-inline my-2 my-lg-0 ml-auto">
+                            <i className="far fa-user"></i> {props.nama}
+                            <button className="btn btn-danger my-2 my-sm-0 ml-3" type="submit" onClick={() => logOut()}>Logout</button>
                         </form>
                         : 
-                        <form class="form-inline my-2 my-lg-0 ml-auto">
+                        <form className="form-inline my-2 my-lg-0 ml-auto">
                             <Link className="btn btn-outline-success my-2 my-sm-0 mx-2" to="/registrasiPelajar">Daftar</Link>
                             <Link className="btn btn-success my-2 my-sm-0 mx-2" to="/loginPelajar">login</Link>
                         </form> }

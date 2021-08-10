@@ -79,6 +79,13 @@ const HalamanPengajar = () => {
                         <Link to="/listKelas" className="btn btn-primary">Selengkapnya</Link>
                     </div>
                 </div>
+                <div class="card my-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Ringkasan Diskusi</h4>
+                        <p class="card-text">Jumlah Kelas: <b> {DataKelas.length}</b> Kelas</p>
+                        <Link to="/listKelasDiskusi" className="btn btn-primary">Selengkapnya</Link>
+                    </div>
+                </div>
             </Container>
         </>
     );

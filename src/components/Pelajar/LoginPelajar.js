@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import swal from 'sweetalert';
 
@@ -6,14 +6,6 @@ const LoginPelajar = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-
-  useEffect(() => {
-    const login = localStorage.getItem("loginPelajar");
-    if(login) {
-      history.push('/ruangKelas');
-    }
-  },[]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

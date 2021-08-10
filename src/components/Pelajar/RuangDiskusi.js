@@ -1,13 +1,12 @@
-import {useState, useEffect} from "react";
-import { useHistory, Link } from "react-router-dom";
-import Footer from "../Footer";
+import { useState, useEffect } from "react";
+import Footer from "../Footer"
 import NavbarLogin from "../NavbarLogin";
+import { Link, useHistory } from "react-router-dom";
 
-const RuangKelas = (props) => {
-    const nama = localStorage.getItem("pelajar");
+const RuangDiskusi = () => {
     const history = useHistory();
-    const [dataKelas, setDataKelas] = useState([]);
     const [cari, setCari] = useState('');
+    const [dataKelas, setDataKelas] = useState([]);
 
     useEffect(() => {
         const token = localStorage.getItem("loginPelajar");
@@ -38,13 +37,14 @@ const RuangKelas = (props) => {
             }
         })
     }
+
     return (
         <>
-            <NavbarLogin nama={nama} />
-            <div className="container">
+            <NavbarLogin />
+                <div className="container">
                 <div className="heading-ruangkelas mt-5 text-center">
-                    <h2><b>Kelas Tersedia</b></h2>
-                    <p>Pelajari bahasa asing dan public speaking darimana saja dan kapan saja. Pilih kelas sesuai kebutuhan kamu</p>
+                    <h2><b>Ruang Diskusi</b></h2>
+                    <p>belajar bersama diruang diskusi. berikut ruang diskusi tersedia</p>
                 </div>
                 <input className="form-control my-5" type="text" placeholder="Cari Kelas" onChange={(e) => setCari(e.target.value)}/>
                 <div className="row my-5">
@@ -52,24 +52,20 @@ const RuangKelas = (props) => {
                         return (
                             <div key={index} className="col-md-6 col-lg-4 col-sm-12">
                                 <div className="card" style={{width: "18rem"}}>
-                                    <img src={data.link_gambar} className="card-img-top" alt="..." />
                                     <div className="card-body">
-                                        <h5 className="card-title">{data.judul}</h5>
+                                        <h3 className="card-title"><b>{data.judul}</b></h3>
                                         <p className="card-text">{data.keterangan}</p>
                                     </div>
-                                    {/* <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Materi : {data.materi}</li>
-                                    </ul> */}
-                                        <Link className="card-body btn btn-info" to={{ pathname: 'detailKelas', state: { id: data.id_kelas, judul: data.judul, gambar: data.link_gambar} }} >Selengkapnya</Link>
+                                    <Link className="card-body btn btn-info" to={{ pathname: '/detailDiskusi', state: { id: data.id_kelas, judul: data.judul, gambar: data.link_gambar} }} >Masuk Diskusi</Link>
                                 </div>
                             </div>
                         );
                     })}
                 </div>
-            </div>
+                </div>
             <Footer />
         </>
-    );
+    )
 }
 
-export default RuangKelas;
+export default RuangDiskusi;

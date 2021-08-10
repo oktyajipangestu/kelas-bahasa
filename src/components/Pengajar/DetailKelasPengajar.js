@@ -234,8 +234,8 @@ const DetailKelasPengajar = (props) => {
     const handleDeleteSoal = () => {
         const token = localStorage.getItem('loginPengajar');
         const dataSend = {
+          token,
           id_soal: idSoalDel,
-          token: token
         }
     
         fetch(`${process.env.REACT_APP_API}/hapusSoal`, {

@@ -127,10 +127,6 @@ const DetailKelas = (props) => {
         })
     }
 
-    const handlePrev = () => {
-
-    }
-
     const handleTambahKomentar = (e) => {
         e.preventDefault();
         const token = localStorage.getItem("loginPelajar");
@@ -194,9 +190,13 @@ const DetailKelas = (props) => {
                                             url={`${data.link_video}`}
                                             />
 
-                                            <div className="my-3">
-                                                    <button className="btn btn-outline-info mr-3" onClick={() => handlePrev()}>Sebelumnya</button>
-                                                    <button className="btn btn-info ml-auto" onClick={() => handleNext()}>Selesai, dan Lanjutkan</button>
+                                            <div className="row my-3 border p-2">
+                                                <div className="col-8">
+                                                    <p className="m-0">Tekan atau pilih tombol Selesai untuk menyimpan progress kamu, jika tidak dipilih maka progress kamu tidak akan terekap</p>
+                                                </div>
+                                                <div className="col-4">
+                                                    <button className="btn .btn-sm btn-info ml-auto mt-1" onClick={() => handleNext()}>Selesai, Sudah dipelajari</button>
+                                                </div>
                                             </div>
 
                                             <div className="description-materi my-4">
@@ -216,8 +216,8 @@ const DetailKelas = (props) => {
                             <div className="col">
                                 <form>
                                     <div className="form-group">
-                                        <label for="exampleFormControlTextarea1"><h5><b>Tulis Komentar</b></h5></label>
-                                        <textarea onChange={(e) => setKomentar(e.target.value) } value={komentar} class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <label htmlFor="exampleFormControlTextarea1"><h5><b>Tulis Komentar</b></h5></label>
+                                        <textarea onChange={(e) => setKomentar(e.target.value) } value={komentar} className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div>
                                     <button type="submit" className="btn btn-outline-primary"  onClick={(e) => handleTambahKomentar(e)}>submit</button>
                                 </form>

@@ -36,7 +36,6 @@ const Dashboard = () => {
         })
     }
 
-    console.log(daftarProgress);
     return (
         <>
             <NavbarLogin />
